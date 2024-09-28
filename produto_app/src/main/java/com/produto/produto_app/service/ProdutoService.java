@@ -37,9 +37,11 @@ public class ProdutoService {
 
     }
 
-   public void deleteProduto(Long id) {
-        Produto produto = produtoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+    public void deleteProduto(Long id) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Produto não encontrada com ID: " + id));
         produtoRepository.delete(produto);
     }
+   
 
 }
