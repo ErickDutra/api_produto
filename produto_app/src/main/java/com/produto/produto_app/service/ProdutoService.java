@@ -20,21 +20,17 @@ public class ProdutoService {
 
 
     public List<ProdutoDto> getProduto() {
-        return produtoRepository.findAll().stream().map(produto -> new ProdutoDto(produto.getId(),produto.getProduto(), produto.getAtendente(), produto.getNumeroMesa())).collect(Collectors.toList());
+        return produtoRepository.findAll().stream().map(produto -> new ProdutoDto(produto.getId(),produto.getProduto(),produto.getPreco(), produto.getCategoria())).collect(Collectors.toList());
     }
     
 
     public ProdutoDto saveProduto(ProdutoDto produto) {
         Produto produtoDb = new Produto();
-        produtoDb.setAtendente(produto.atendente());
-        produtoDb.setNumeroMesa(produto.numeroMesa());
+        produtoDb.setPreco(produto.preco());
         produtoDb.setProduto(produto.produto());
-
+        produtoDb.setCategoria(produto.categoria());
         produtoRepository.save(produtoDb);
-
-        return new ProdutoDto(produtoDb.getId(), produtoDb.getProduto(), produtoDb.getAtendente(), produtoDb.getNumeroMesa());
-
-
+        return new ProdutoDto(produtoDb.getId(), produtoDb.getProduto(), produtoDb.getPreco(), produtoDb.getCategoria());
     }
 
     public void deleteProduto(Long id) {

@@ -1,5 +1,6 @@
 package com.produto.produto_app.dto;
 
-public record ProdutoDto(Long id, String produto, String atendente, int numeroMesa ) {
-    
+import com.produto.produto_app.table.Categoria;
+
+public record ProdutoDto(String id, String produto, Double preco, Categoria categoria ){
 }
